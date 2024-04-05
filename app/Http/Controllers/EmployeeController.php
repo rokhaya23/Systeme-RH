@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
+use App\Notifications\SendEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -69,6 +70,8 @@ class EmployeeController extends Controller
         // Attribuer le rôle approprié à l'employé
         $employee->assignRole($request->roles);
 
+        // Envoyer une notification par e-mail au nouvel employé
+        $employee->notify(new SendEmail($employee, $request->password));
 
         // Rediriger avec un message de succès
         return redirect()->route('employees.index')->with('success', 'Employee added successfully.');
@@ -142,35 +145,5 @@ class EmployeeController extends Controller
         return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
     }
 
-    public function storeOrUpdate(EmployeeRequest $request)
-    {
-        // Valider les données du formulaire
-        $data = $request->validated();
-
-        // Traiter la photo
-        if ($request->hasFile('photo')) {
-            $imagePath = $request->file('photo')->store('photos', 'public');
-            $data['photo'] = $imagePath;
-        }
-
-        // Hasher le mot de passe s'il est fourni
-        if ($request->filled('password')) {
-            $data['password'] = Hash::make($data['password']);
-        }
-
-        // Vérifier si un employé existe déjà
-        $employee = Employee::find($request->input('employee_id'));
-
-        // Si l'employé existe, mettre à jour ses données, sinon créer un nouvel employé
-        if ($employee) {
-            $employee->update($data);
-            $message = 'Employee updated successfully.';
-        } else {
-            Employee::create($data);
-            $message = 'Employee added successfully.';
-        }
-
-        return redirect()->route('employees.index')->with('success', $message);
-    }
 
 }

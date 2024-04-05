@@ -7,6 +7,8 @@ use App\Models\Conge;
 use App\Models\Employee;
 use App\Models\Gestion_Conge;
 use App\Models\Utilisateur;
+use App\Notifications\AcceptCongeNotification;
+use App\Notifications\RejectCongeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -193,6 +195,8 @@ class ListesCongeController extends Controller
         $demandeConge->statut = 'Accepted';
         $demandeConge->save();
 
+        $demandeConge->notify(new AcceptCongeNotification($demandeConge));
+
         return view('employee.listecongeadmin',  compact('demandeConge'))->with('success', 'The leave request has been accepted successfully.');
     }
 
@@ -202,6 +206,8 @@ class ListesCongeController extends Controller
         // Logic for rejecting the leave request
         $demandeConge->statut = 'Rejected';
         $demandeConge->save();
+
+        $demandeConge->notify(new RejectCongeNotification($demandeConge));
 
         return view('employee.listecongeadmin',  compact('demandeConge'))->with('success', 'The leave request has been rejected successfully.');
     }

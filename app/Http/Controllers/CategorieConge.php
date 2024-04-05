@@ -25,14 +25,4 @@ class CategorieConge extends Controller
 
     }
 
-    public function telechargerPdfDemandeConge($id)
-    {
-        $demandeConge = Conge::findOrFail($id); // Supposons que vous avez un modèle Conge pour représenter les demandes de congé
-
-        // Générer le PDF en utilisant une vue spécifique pour la demande de congé
-        $pdf = PDF::loadView('employee.pdf', compact('demandeConge'));
-
-        // Télécharger le PDF
-        return $pdf->download('demande_conge.pdf');
-    }
 }

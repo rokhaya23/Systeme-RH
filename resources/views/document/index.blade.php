@@ -14,16 +14,16 @@
                                 <i class="fa fa-file-pdf-o"></i>
                             </div>
                             <div class="card-body">
-                                <h6><a href="">Work Certificate</a></h6>
+                                <h6><a href="{{ route('documents.attestation') }}" target="_blank">Work Certificate</a></h6>
                                 <span>10.45kb</span>
                             </div>
                             <div class="card-footer">
-                                <a href="{{ route('documents.attestation') }}" download="Attestation_de_travail.pdf">
+                                <a href="{{ route('documents.attestation') }}" target="_blank">
                                     <button type="button" class="btn btn-rounded btn-warning">
                                         <span class="btn-icon-left text-warning">
-                                            <i class="fa fa-download color-warning"></i>
+                                            <i class="fa fa-eye color-warning"></i>
                                         </span>
-                                        Download
+                                        View
                                     </button>
                                 </a>
                             </div>
@@ -36,16 +36,16 @@
                                 <i class="fa fa-file-pdf-o"></i>
                             </div>
                             <div class="card-body">
-                                <h6><a href="">Employment Contract</a></h6>
+                                <h6><a href="{{ route('documents.contrat') }}" target="_blank">Employment Contract</a></h6>
                                 <span>10.45kb</span>
                             </div>
                             <div class="card-footer">
-                                <a href="{{ route('documents.contrat') }}" download="Contrat_de_travail.pdf">
+                                <a href="{{ route('documents.contrat') }}" target="_blank">
                                     <button type="button" class="btn btn-rounded btn-warning">
                                         <span class="btn-icon-left text-warning">
-                                            <i class="fa fa-download color-warning"></i>
+                                            <i class="fa fa-eye color-warning"></i>
                                         </span>
-                                        Download
+                                        View
                                     </button>
                                 </a>
                             </div>
@@ -58,16 +58,16 @@
                                 <i class="fa fa-file-pdf-o"></i>
                             </div>
                             <div class="card-body">
-                                <h6><a href="">Leave Request</a></h6>
+                                <h6><a href="{{ route('documents.conge') }}" target="_blank">Leave Request</a></h6>
                                 <span>10.45kb</span>
                             </div>
                             <div class="card-footer">
-                                <a href="{{ route('documents.leave_request') }}" download="demande_de_conge.pdf">
+                                <a href="{{ route('documents.conge') }}" target="_blank">
                                     <button type="button" class="btn btn-rounded btn-warning">
                                         <span class="btn-icon-left text-warning">
-                                            <i class="fa fa-download color-warning"></i>
+                                            <i class="fa fa-eye color-warning"></i>
                                         </span>
-                                        Download
+                                        View
                                     </button>
                                 </a>
                             </div>
